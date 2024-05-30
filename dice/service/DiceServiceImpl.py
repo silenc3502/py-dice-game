@@ -23,3 +23,5 @@ class DiceServiceImpl(DiceService):
     def getDiceNumber(self, playerId):
         return self.__diceRepository.getDiceNumber(playerId)
 
+    def checkDice(self, playerId):
+        return self.__diceRepository.checkDice(playerId)

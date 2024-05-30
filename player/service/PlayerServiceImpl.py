@@ -20,3 +20,6 @@ class PlayerServiceImpl(PlayerService):
 
     def createPlayer(self, nickname):
         self.__playerRepository.createPlayer(nickname)
+
+    def findPlayerIdByPlayerNickname(self, nickname):
+        return self.__playerRepository.findPlayerIdByPlayerNickname(nickname)

@@ -30,3 +30,9 @@ class DiceRepositoryImpl(DiceRepository):
 
     def getDiceNumber(self, playerId):
         return [dice.getDiceNumber() for dice in self.__diceList if dice.getRollingPlayerId() == playerId]
+
+    def checkDice(self, playerId):
+        for dice in self.__diceList:
+            if dice.getRollingPlayerId() == playerId:
+                return dice
+        return None

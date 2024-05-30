@@ -9,3 +9,8 @@ class DiceRepository(ABC):
     @abstractmethod
     def getDiceNumber(self, playerId):
         pass
+
+    @abstractmethod
+    def checkDice(self, playerId):
+        pass
+    
