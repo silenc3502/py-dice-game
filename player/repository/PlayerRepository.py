@@ -6,3 +6,6 @@ class PlayerRepository(ABC):
     def createPlayer(self, nickname):
         pass
 
+    @abstractmethod
+    def findPlayerIdByPlayerNickname(self, nickname):
+        pass

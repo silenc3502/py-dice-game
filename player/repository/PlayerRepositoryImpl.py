@@ -8,7 +8,7 @@ class PlayerRepositoryImpl(PlayerRepository):
     def __new__(cls):
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)
-            cls.__instance.__player = None
+            cls.__instance.__playerList = []
 
         return cls.__instance
 
@@ -19,4 +19,17 @@ class PlayerRepositoryImpl(PlayerRepository):
         return cls.__instance
 
     def createPlayer(self, nickname):
-        self.__player = Player(nickname)
+        player = Player(nickname)
+        self.__playerList.append(player)
+
+    def getPlayerList(self):
+        return self.__playerList
+
+    def findPlayerIdByPlayerNickname(self, nickname):
+        for player in self.__playerList:
+            if player.getPlayerNickname() == nickname:
+                return player.getPlayerId()
+        return None
+
+
+
