@@ -5,7 +5,6 @@ from initializer.DomainInitiailizer import DomainInitializer
 
 DomainInitializer.initEachDomain()
 
-
 class TestDice(unittest.TestCase):
     def setUp(self):
         self.diceService = DiceServiceImpl.getInstance()
@@ -15,17 +14,19 @@ class TestDice(unittest.TestCase):
         self.assertIs(self.diceService, diceService, "DiceServiceImpl should be a singleton")
 
     def test_roll_dice(self):
-        self.diceService.rollDice()
-        rolled_number = self.diceService.getDiceNumber()
-        self.assertGreaterEqual(rolled_number, DiceNumber.ONE.value, "Rolled number should be >= 1")
-        self.assertLessEqual(rolled_number, DiceNumber.SIX.value, "Rolled number should be <= 6")
+        self.diceService.rollDice(playerId=1)
+        rolled_numbers = self.diceService.getDiceNumber(playerId=1)
+        for rolled_number in rolled_numbers:
+            self.assertGreaterEqual(rolled_number, DiceNumber.ONE.value, "Rolled number should be >= 1")
+            self.assertLessEqual(rolled_number, DiceNumber.SIX.value, "Rolled number should be <= 6")
 
     def test_dice_number_range(self):
         for _ in range(100):
-            self.diceService.rollDice()
-            rolled_number = self.diceService.getDiceNumber()
-            self.assertGreaterEqual(rolled_number, DiceNumber.ONE.value, "Rolled number should be >= 1")
-            self.assertLessEqual(rolled_number, DiceNumber.SIX.value, "Rolled number should be <= 6")
+            self.diceService.rollDice(playerId=1)
+            rolled_numbers = self.diceService.getDiceNumber(playerId=1)
+            for rolled_number in rolled_numbers:
+                self.assertGreaterEqual(rolled_number, DiceNumber.ONE.value, "Rolled number should be >= 1")
+                self.assertLessEqual(rolled_number, DiceNumber.SIX.value, "Rolled number should be <= 6")
 
 
 if __name__ == "__main__":

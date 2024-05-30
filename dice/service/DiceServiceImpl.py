@@ -17,9 +17,9 @@ class DiceServiceImpl(DiceService):
             cls.__instance = cls()
         return cls.__instance
 
-    def rollDice(self):
-        self.__diceRepository.rollDice()
+    def rollDice(self, playerId):
+        self.__diceRepository.rollDice(playerId)
 
-    def getDiceNumber(self):
-        return self.__diceRepository.getDiceNumber()
+    def getDiceNumber(self, playerId):
+        return self.__diceRepository.getDiceNumber(playerId)
 

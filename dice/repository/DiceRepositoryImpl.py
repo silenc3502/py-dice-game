@@ -11,7 +11,7 @@ class DiceRepositoryImpl(DiceRepository):
     def __new__(cls):
         if cls.__instance is None:
             cls.__instance = super().__new__(cls)
-            cls.__instance.__dice = Dice()
+            cls.__instance.__diceList = []
 
         return cls.__instance
 
@@ -21,9 +21,12 @@ class DiceRepositoryImpl(DiceRepository):
             cls.__instance = cls()
         return cls.__instance
 
-    def rollDice(self):
+    def rollDice(self, playerId):
         diceNumber = randint(DiceNumber.ONE.value, DiceNumber.SIX.value)
-        self.__dice.setDiceNumber(diceNumber)
+        dice = Dice()
+        dice.setDiceNumber(diceNumber)
+        dice.setRollingPlayerId(playerId)
+        self.__diceList.append(dice)
 
-    def getDiceNumber(self):
-        return self.__dice.getDiceNumber()
+    def getDiceNumber(self, playerId):
+        return [dice.getDiceNumber() for dice in self.__diceList if dice.getRollingPlayerId() == playerId]

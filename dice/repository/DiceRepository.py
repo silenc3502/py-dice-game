@@ -3,9 +3,9 @@ from abc import ABC, abstractmethod
 
 class DiceRepository(ABC):
     @abstractmethod
-    def rollDice(self):
+    def rollDice(self, playerId):
         pass
 
     @abstractmethod
-    def getDiceNumber(self):
+    def getDiceNumber(self, playerId):
         pass
